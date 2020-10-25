@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Triplist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h2>Trip</h2>
+	<table class="table table-striped">
+		<tr>
+		    <th>Name</th>
+		</tr>  
+    	<tr th:each = "trip : ${trips}">
+    		<td th:text="${trip.name}"></td>
+    	</tr>
+     </table>
+	<a href="/addtrip" class="btn btn-success">Add a new Trip</a>
+</body>
+</html>
