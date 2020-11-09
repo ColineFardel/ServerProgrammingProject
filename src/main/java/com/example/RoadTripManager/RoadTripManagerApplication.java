@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.RoadTripManager.domain.Route;
+import com.example.RoadTripManager.domain.RouteRepository;
 import com.example.RoadTripManager.domain.Trip;
 import com.example.RoadTripManager.domain.TripRepository;
 
@@ -21,13 +23,21 @@ public class RoadTripManagerApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(TripRepository triprepository){
+	public CommandLineRunner demo(TripRepository triprepository, RouteRepository routerepository){
 		return(args)->{
+			
+			
 			
 			log.info("save some trips");
 			triprepository.save(new Trip("Italie-2021"));
 			triprepository.save(new Trip("France-2023"));
 			triprepository.save(new Trip("Suisse-2025"));
+			
+			
+			log.info("save some routes");
+			routerepository.save(new Route("Sion","Lausanne", "12:30", "13:24", "05.06.2021",triprepository.findById((long) 1).get()));
+			
+			
 			
 			log.info("fetch all trips");
 			for (Trip trip : triprepository.findAll()) {

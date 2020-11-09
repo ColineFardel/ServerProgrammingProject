@@ -1,5 +1,7 @@
 package com.example.RoadTripManager.domain;
 
-public interface RouteRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface RouteRepository extends CrudRepository<Route, Long>{
 
 }

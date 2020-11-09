@@ -1,5 +1,7 @@
 package com.example.RoadTripManager.web;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,5 +63,24 @@ public class TripController {
     	triprepository.deleteById(tripId);
         return "redirect:../triplist";
     }
+    
+  //Modify a book
+    @RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
+    public String modifyBook(@PathVariable("id") Long tripId, Model model) {
+    	Optional<Trip> trip = triprepository.findById(tripId);
+    	model.addAttribute("trip", trip);
+        return "modifytrip";
+    }
+    
+    /**
+	 * Method to show the details of one trip
+	 * @return the html page for the details of the trip
+	 */
+	@RequestMapping(value = "/tripdetails/{id}", method = RequestMethod.GET)
+	public String tripdetails(@PathVariable("id") Long tripId, Model model) {
+		Trip trip = triprepository.findById(tripId).get();
+		model.addAttribute("trip", trip);
+		return "tripdetails";
+	}
 
 }

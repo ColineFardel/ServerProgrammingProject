@@ -3,6 +3,8 @@ package com.example.RoadTripManager.domain;
 import java.util.List;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * 
  * @author Coline Fardel
@@ -15,14 +17,24 @@ public class Trip {
 	private Long id;
 	private String name;
 	
-	//private List<Route> routes;
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="trip")
+	private List<Route> routes;
 	//private List<Place> places;
 	//private List<Sleep> sleeps;
+	
+	
 	
 	public Trip(String name) {
 		this.name = name;
 	}
 	
+	public Trip(String name, List<Route> routes) {
+		super();
+		this.name = name;
+		this.routes = routes;
+	}
+
 	public Trip() {
 		
 	}
@@ -42,6 +54,16 @@ public class Trip {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public List<Route> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(List<Route> routes) {
+		this.routes = routes;
+	}
+	
+	
 	
 	
 

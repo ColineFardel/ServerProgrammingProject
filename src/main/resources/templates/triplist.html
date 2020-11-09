@@ -11,11 +11,15 @@
 	<table class="table table-striped">
 		<tr>
 		    <th>Name</th>
+		    <th></th>
+		    <th></th>
+		    <th></th>
 		</tr>  
     	<tr th:each = "trip : ${trips}">
     		<td th:text="${trip.name}"></td>
     		<td><a th:href="@{/delete/{id}(id=${trip.id})}" class="btn btn-xs btn-danger">Delete</a></td>
-    		<td><a th:href="@{/modify/{id}(id=${trip.id})}"  class="btn btn-warning">Modify</a></td>    
+    		<td><a th:href="@{/modify/{id}(id=${trip.id})}"  class="btn btn-warning">Modify</a></td> 
+    		<td><a th:href="@{/tripdetails/{id}(id=${trip.id})}"  class="btn btn-light">Show</a></td>    
     	</tr>
      </table>
 	<a href="/addtrip" class="btn btn-success">Add a new Trip</a>

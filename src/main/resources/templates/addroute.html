@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TripList</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+</head>
+<body>
+	<h1>Add Route</h1>
+	<div>
+		<form th:object="${route}" th:action="@{save}" action="#" method="post">
+		  	<label for="city1">City of departure</label>
+			<input type="text" id="city1" th:field="*{city1}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="city2">City of arrival</label>
+			<input type="text" id="city2" th:field="*{city2}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="departureTime">Time of departure</label>
+			<input type="text" id="departureTime" th:field="*{departureTime}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="arrivingTime">Time of arrival</label>
+			<input type="text" id="arrivingTime" th:field="*{arrivingTime}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="date">Date</label>
+			<input type="text" id="date" th:field="*{date}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input class="btn btn-success" type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>

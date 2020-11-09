@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Triplist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h2 text="${trip.name}"></h2>
+	<table class="table table-striped">
+		<tr>
+		    <th>City of departure</th>
+		    <th>City of arriving</th>
+		    <th>Time of departure</th>
+		    <th>Time of arriving</th>
+		    <th>Date of the route</th>
+		</tr>  
+    	<tr th:each = "route : ${trip.routes}">
+    		<td th:text="${route.city1}"></td>
+    		<td th:text="${route.city2}"></td>
+    		<td th:text="${route.departureTime}"></td>
+    		<td th:text="${route.arrivingTime}"></td>
+    		<td th:text="${route.date}"></td>
+    		<td><a th:href="@{/delete/{id}(id=${route.id})}" class="btn btn-xs btn-danger">Delete</a></td>
+    		<td><a th:href="@{/modify/{id}(id=${route.id})}"  class="btn btn-warning">Modify</a></td>    
+    	</tr>
+     </table>
+	<a href="/addroute" class="btn btn-success">Add a new Route</a>
+</body>
+</html>
