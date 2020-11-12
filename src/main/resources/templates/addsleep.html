@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TripList</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+</head>
+<body>
+	<h1>Add Sleep place</h1>
+	<div>
+		<form th:object="${sleep}" th:action="@{saveSleep}" action="#" method="post">
+		  	<label for="city">City</label>
+			<input type="text" id="city" th:field="*{city}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="date">Date</label>
+			<input type="text" id="date" th:field="*{date}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="name">Name</label>
+			<input type="text" id="name" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="checkupTime">Check up Time</label>
+			<input type="text" id="checkupTime" th:field="*{checkupTime}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="price">Price</label>
+			<input type="text" id="price" th:field="*{price}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="tiplist">Trip</label>
+			<select id="triplist" th:field="*{trip}" class="form-control">
+				<option th:each="trip: ${trips}"
+						th:value="${trip.id}"
+						th:text="${trip.name}"> </option>
+			</select>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input class="btn btn-success" type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>

@@ -7,8 +7,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.RoadTripManager.domain.Place;
+import com.example.RoadTripManager.domain.PlaceRepository;
 import com.example.RoadTripManager.domain.Route;
 import com.example.RoadTripManager.domain.RouteRepository;
+import com.example.RoadTripManager.domain.Sleep;
+import com.example.RoadTripManager.domain.SleepRepository;
 import com.example.RoadTripManager.domain.Trip;
 import com.example.RoadTripManager.domain.TripRepository;
 
@@ -23,7 +27,7 @@ public class RoadTripManagerApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(TripRepository triprepository, RouteRepository routerepository){
+	public CommandLineRunner demo(TripRepository triprepository, RouteRepository routerepository, PlaceRepository placerepository, SleepRepository sleeprepository){
 		return(args)->{
 			
 			
@@ -36,6 +40,12 @@ public class RoadTripManagerApplication {
 			
 			log.info("save some routes");
 			routerepository.save(new Route("Sion","Lausanne", "12:30", "13:24", "05.06.2021",triprepository.findById((long) 1).get()));
+			
+			log.info("save some places");
+			placerepository.save(new Place("Sion", "05.06.2021","Tourbillon",triprepository.findById((long) 1).get()));
+			
+			log.info("save some sleep places");
+			sleeprepository.save(new Sleep("Sion", "05.06.2021","18:00",125,"Hotel",triprepository.findById((long) 1).get()));
 			
 			
 			
