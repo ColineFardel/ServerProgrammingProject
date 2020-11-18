@@ -8,10 +8,13 @@
 
 </head>
 <body>
-	<h1>Add Sleep place</h1>
+	<h1>Modify Place</h1>
 	<div>
-		<form th:object="${sleep}" th:action="@{saveSleep}" action="#"
+		<form th:object="${place}" th:action="@{../savePlace}" action="#"
 			method="post">
+			<label for="id"></label> <input type="hidden" id="id"
+				th:field="*{id}" readonly="readonly" />
+			<div style="clear: both; display: block; height: 10px;"></div>
 			<label for="city">City</label> <input type="text" id="city"
 				th:field="*{city}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
@@ -20,15 +23,7 @@
 				th:field="*{name}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 
-			<label for="checkupTime">Check up Time</label> <input type="text"
-				id="checkupTime" th:field="*{checkupTime}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-
-			<label for="price">Price</label> <input type="text" id="price"
-				th:field="*{price}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-
-			<label for="daylist">Day</label> <select id="daylist"
+			<label for="daylist">Trip</label> <select id="daylist"
 				th:field="*{day}" class="form-control">
 				<option th:each="day: ${days}" th:value="${day.id}"
 					th:text="${day.date}"></option>

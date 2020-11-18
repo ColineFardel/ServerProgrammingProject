@@ -17,26 +17,40 @@ public class Place {
 	private long id;
 	
 	private String city;
-	private String date;
 	private String name;
 	
 	@ManyToOne
 	@JsonIgnore
+	@JoinColumn(name="dayid")
+	private Day day;
+	
+	/*
+	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="tripid")
 	private Trip trip;
+	*/
 
 	public Place() {
 
 	}
 
+	public Place(String city, String name, Day day) {
+		super();
+		this.city = city;
+		this.name = name;
+		this.day = day;
+	}
+
+	/*
 	public Place(String city, String date, String name, Trip trip) {
 		super();
-		this.id = id;
 		this.city = city;
 		this.date = date;
 		this.name = name;
 		this.trip = trip;
 	}
+	*/
 
 	public long getId() {
 		return id;
@@ -54,14 +68,6 @@ public class Place {
 		this.city = city;
 	}
 
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -70,6 +76,15 @@ public class Place {
 		this.name = name;
 	}
 
+	public Day getDay() {
+		return day;
+	}
+
+	public void setDay(Day day) {
+		this.day = day;
+	}
+
+	/*
 	public Trip getTrip() {
 		return trip;
 	}
@@ -77,7 +92,7 @@ public class Place {
 	public void setTrip(Trip trip) {
 		this.trip = trip;
 	}
-	
+	*/
 	
 	
 	

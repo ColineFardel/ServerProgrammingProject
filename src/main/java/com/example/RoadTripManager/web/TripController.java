@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.RoadTripManager.domain.Day;
+import com.example.RoadTripManager.domain.DayRepository;
 import com.example.RoadTripManager.domain.Place;
 import com.example.RoadTripManager.domain.PlaceRepository;
 import com.example.RoadTripManager.domain.Route;
@@ -31,6 +33,8 @@ public class TripController {
 	private SleepRepository sleeprepository;
 	@Autowired
 	private RouteRepository routerepository;
+	@Autowired
+	private DayRepository dayrepository;
 	
 	/**
 	 * Method to show the list of trips
@@ -54,6 +58,18 @@ public class TripController {
 	}
 	
 	/**
+	 * Method to add a new day to the database
+	 * @param model
+	 * @return the page to add a day
+	 */
+	@RequestMapping("/addday")
+	public String addday(Model model) {
+		model.addAttribute("day", new Day());
+		model.addAttribute("trips", triprepository.findAll());
+		return "addday";
+	}
+	
+	/**
 	 * Method to add a new route to the database
 	 * @param model
 	 * @return the page to add a route
@@ -61,7 +77,7 @@ public class TripController {
 	@RequestMapping("/addroute")
 	public String addroute(Model model) {
 		model.addAttribute("route", new Route());
-		model.addAttribute("trips", triprepository.findAll());
+		model.addAttribute("days", dayrepository.findAll());
 		return "addroute";
 	}
 	
@@ -73,7 +89,7 @@ public class TripController {
 	@RequestMapping("/addplace")
 	public String addplace(Model model) {
 		model.addAttribute("place", new Place());
-		model.addAttribute("trips", triprepository.findAll());
+		model.addAttribute("days", dayrepository.findAll());
 		return "addplace";
 	}
 	
@@ -85,7 +101,7 @@ public class TripController {
 	@RequestMapping("/addsleep")
 	public String addsleep(Model model) {
 		model.addAttribute("sleep", new Sleep());
-		model.addAttribute("trips", triprepository.findAll());
+		model.addAttribute("days", dayrepository.findAll());
 		return "addsleep";
 	}
 	
@@ -97,6 +113,17 @@ public class TripController {
     @RequestMapping(value = "/saveTrip", method = RequestMethod.POST)
     public String saveTrip(Trip trip){
     	triprepository.save(trip);
+        return "redirect:triplist";
+    }
+    
+    /**
+	 * Method to save a day in the database
+	 * @param trip
+	 * @return the list of trips
+	 */
+    @RequestMapping(value = "/saveDay", method = RequestMethod.POST)
+    public String saveDay(Day day){
+    	dayrepository.save(day);
         return "redirect:triplist";
     }
     
@@ -157,6 +184,12 @@ public class TripController {
         return "redirect:../triplist";
     }
     
+    @RequestMapping(value = "/deleteDay/{id}", method = RequestMethod.GET)
+    public String deleteDay(@PathVariable("id") Long dayId, Model model) {
+    	dayrepository.deleteById(dayId);
+        return "redirect:../triplist";
+    }
+    
     /**
      * Method to delete a route from the database
      * @param routeId
@@ -203,6 +236,38 @@ public class TripController {
 		Trip trip = triprepository.findById(tripId).get();
 		model.addAttribute("trip", trip);
 		return "tripdetails";
+	}
+	
+	@RequestMapping(value = "/modifyDay/{id}", method = RequestMethod.GET)
+	public String modifyDay(@PathVariable("id") Long dayId, Model model) {
+		Optional<Day> day = dayrepository.findById(dayId);
+		model.addAttribute("day", day);
+		model.addAttribute("trips", triprepository.findAll());
+		return "modifyday";
+	}
+	
+	@RequestMapping(value = "/modifyRoute/{id}", method = RequestMethod.GET)
+	public String modifyRoute(@PathVariable("id") Long routeId, Model model) {
+		Optional<Route> route = routerepository.findById(routeId);
+		model.addAttribute("route", route);
+		model.addAttribute("days", dayrepository.findAll());
+		return "modifyroute";
+	}
+	
+	@RequestMapping(value = "/modifySleep/{id}", method = RequestMethod.GET)
+	public String modifySleep(@PathVariable("id") Long sleepId, Model model) {
+		Optional<Sleep> sleep = sleeprepository.findById(sleepId);
+		model.addAttribute("sleep", sleep);
+		model.addAttribute("days", dayrepository.findAll());
+		return "modifysleep";
+	}
+	
+	@RequestMapping(value = "/modifyPlace/{id}", method = RequestMethod.GET)
+	public String modifyPlace(@PathVariable("id") Long placeId, Model model) {
+		Optional<Place> place = placerepository.findById(placeId);
+		model.addAttribute("place", place);
+		model.addAttribute("days", dayrepository.findAll());
+		return "modifyplace";
 	}
 
 }

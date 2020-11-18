@@ -8,10 +8,13 @@
 
 </head>
 <body>
-	<h1>Add Sleep place</h1>
+	<h1>Modify Sleep place</h1>
 	<div>
-		<form th:object="${sleep}" th:action="@{saveSleep}" action="#"
+		<form th:object="${sleep}" th:action="@{../saveSleep}" action="#"
 			method="post">
+			<label for="id"></label> <input type="hidden" id="id"
+				th:field="*{id}" readonly="readonly" />
+			<div style="clear: both; display: block; height: 10px;"></div>
 			<label for="city">City</label> <input type="text" id="city"
 				th:field="*{city}" />
 			<div style="clear: both; display: block; height: 10px;"></div>

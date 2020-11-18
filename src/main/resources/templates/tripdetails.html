@@ -2,70 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Triplist</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Triplist</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
 	<h2 textContent="${trip.name}" value="${trip.name}"></h2>
-	<table class="table table-striped">
-		<tr>
-		    <th>City of departure</th>
-		    <th>City of arriving</th>
-		    <th>Time of departure</th>
-		    <th>Time of arriving</th>
-		    <th>Date of the route</th>
-		    <th></th>
-		    <th></th>
-		</tr>  
-    	<tr th:each = "route : ${trip.routes}">
-    		<td th:text="${route.city1}"></td>
-    		<td th:text="${route.city2}"></td>
-    		<td th:text="${route.departureTime}"></td>
-    		<td th:text="${route.arrivingTime}"></td>
-    		<td th:text="${route.date}"></td>
-    		<td><a th:href="@{/deleteRoute/{id}(id=${route.id})}" class="btn btn-xs btn-danger">Delete</a></td>
-    		<td><a th:href="@{/modify/{id}(id=${route.id})}"  class="btn btn-warning">Modify</a></td>    
-    	</tr>
-     </table>
-     <table class="table table-striped">
-		<tr>
-		    <th>City</th>
-		    <th>Name</th>
-		    <th>Date</th>
-		    <th></th>
-		    <th></th>
-		</tr>  
-    	<tr th:each = "place : ${trip.places}">
-    		<td th:text="${place.city}"></td>
-    		<td th:text="${place.name}"></td>
-    		<td th:text="${place.date}"></td>
-    		<td><a th:href="@{/deletePlace/{id}(id=${place.id})}" class="btn btn-xs btn-danger">Delete</a></td>
-    		<td><a th:href="@{/modify/{id}(id=${place.id})}"  class="btn btn-warning">Modify</a></td>    
-    	</tr>
-     </table>
-      <table class="table table-striped">
-		<tr>
-		    <th>City</th>
-		    <th>Name</th>
-		    <th>Date</th>
-		    <th>Check up Time</th>
-		    <th>price</th>
-		    <th></th>
-		    <th></th>
-		</tr>  
-    	<tr th:each = "sleep : ${trip.sleeps}">
-    		<td th:text="${sleep.city}"></td>
-    		<td th:text="${sleep.name}"></td>
-    		<td th:text="${sleep.date}"></td>
-    		<td th:text="${sleep.checkupTime}"></td>
-    		<td th:text="${sleep.price}"></td>
-    		<td><a th:href="@{/deleteSleep/{id}(id=${sleep.id})}" class="btn btn-xs btn-danger">Delete</a></td>
-    		<td><a th:href="@{/modify/{id}(id=${sleep.id})}"  class="btn btn-warning">Modify</a></td>    
-    	</tr>
-     </table>
+	<div th:each="day : ${trip.days}">
+		<div th:text="${day.date}"></div>
+		<div th:each="route : ${day.routes}">
+			<div th:text="${route.city1}"></div>
+			<div th:text="${route.city2}"></div>
+			<div th:text="${route.departureTime}"></div>
+			<div th:text="${route.arrivalTime}"></div>
+			<a th:href="@{/deleteRoute/{id}(id=${route.id})}"
+				class="btn btn-xs btn-danger">Delete</a> <a
+				th:href="@{/modifyRoute/{id}(id=${route.id})}"
+				class="btn btn-warning">Modify</a>
+		</div>
+		<div th:each="place : ${day.places}">
+			<div th:text="${place.city}"></div>
+			<div th:text="${place.name}"></div>
+			<a th:href="@{/deletePlace/{id}(id=${place.id})}"
+				class="btn btn-xs btn-danger">Delete</a> <a
+				th:href="@{/modifyPlace/{id}(id=${place.id})}"
+				class="btn btn-warning">Modify</a>
+		</div>
+		<div th:each="sleep : ${day.sleeps}">
+			<div th:text="${sleep.city}"></div>
+			<div th:text="${sleep.name}"></div>
+			<div th:text="${sleep.checkupTime}"></div>
+			<div th:text="${sleep.price}"></div>
+			<a th:href="@{/deleteSleep/{id}(id=${sleep.id})}"
+				class="btn btn-xs btn-danger">Delete</a> <a
+				th:href="@{/modifySleep/{id}(id=${sleep.id})}"
+				class="btn btn-warning">Modify</a>
+		</div>
+		<a th:href="@{/deleteDay/{id}(id=${day.id})}"
+			class="btn btn-xs btn-danger">Delete</a> <a
+			th:href="@{/modifyDay/{id}(id=${day.id})}" class="btn btn-warning">Modify</a>
+	</div>
+	<a href="/addday" class="btn btn-success">Add a new Day</a>
 	<a href="/addroute" class="btn btn-success">Add a new Route</a>
-	<a href="/addplace" class="btn btn-success">Add a new Place to visit</a>
+	<a href="/addplace" class="btn btn-success">Add a new Place to
+		visit</a>
 	<a href="/addsleep" class="btn btn-success">Add a new Sleep place</a>
+	<a href="/triplist" class="btn btn-danger">Back</a>
 </body>
 </html>

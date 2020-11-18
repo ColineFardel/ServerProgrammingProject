@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.RoadTripManager.domain.Day;
+import com.example.RoadTripManager.domain.DayRepository;
 import com.example.RoadTripManager.domain.Place;
 import com.example.RoadTripManager.domain.PlaceRepository;
 import com.example.RoadTripManager.domain.Route;
@@ -18,37 +20,37 @@ import com.example.RoadTripManager.domain.TripRepository;
 
 @SpringBootApplication
 public class RoadTripManagerApplication {
-	
-	private static final Logger log = LoggerFactory.getLogger(RoadTripManagerApplication.class);
 
+	private static final Logger log = LoggerFactory.getLogger(RoadTripManagerApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(RoadTripManagerApplication.class, args);
 	}
-	
+
 	@Bean
-	public CommandLineRunner demo(TripRepository triprepository, RouteRepository routerepository, PlaceRepository placerepository, SleepRepository sleeprepository){
-		return(args)->{
-			
-			
-			
+	public CommandLineRunner demo(TripRepository triprepository, DayRepository dayrepository,
+			RouteRepository routerepository, PlaceRepository placerepository, SleepRepository sleeprepository) {
+		return (args) -> {
+
 			log.info("save some trips");
 			triprepository.save(new Trip("Italie-2021"));
 			triprepository.save(new Trip("France-2023"));
 			triprepository.save(new Trip("Suisse-2025"));
-			
-			
+
+			log.info("save some days");
+			dayrepository.save(new Day("05.11.2020", triprepository.findById((long) 1).get()));
+
 			log.info("save some routes");
-			routerepository.save(new Route("Sion","Lausanne", "12:30", "13:24", "05.06.2021",triprepository.findById((long) 1).get()));
-			
+			routerepository.save(
+					new Route("Sion", "Lausanne", "12:30", "13:24", dayrepository.findByDate("05.11.2020").get(0)));
+
 			log.info("save some places");
-			placerepository.save(new Place("Sion", "05.06.2021","Tourbillon",triprepository.findById((long) 1).get()));
-			
+			placerepository.save(new Place("Sion", "Tourbillon", dayrepository.findByDate("05.11.2020").get(0)));
+
 			log.info("save some sleep places");
-			sleeprepository.save(new Sleep("Sion", "05.06.2021","18:00",125,"Hotel",triprepository.findById((long) 1).get()));
-			
-			
-			
+			sleeprepository.save(new Sleep("Sion", "18:00", 125, "Hotel",
+					dayrepository.findByDate("05.11.2020").get(0)));
+
 			log.info("fetch all trips");
 			for (Trip trip : triprepository.findAll()) {
 				log.info(trip.toString());

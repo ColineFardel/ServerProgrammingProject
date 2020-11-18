@@ -9,20 +9,16 @@
 <body>
 	<h1>Add Place</h1>
 	<div>
-		<form th:object="${place}" th:action="@{savePlace}" action="#" method="post">
-		  	<label for="city">City</label>
-			<input type="text" id="city" th:field="*{city}" />
+		<form th:object="${day}" th:action="@{saveDay}" action="#" method="post">
+		  	<label for="date">Date</label>
+			<input type="text" id="date" th:field="*{date}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
-			<label for="name">Name</label>
-			<input type="text" id="name" th:field="*{name}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<label for="daylist">Trip</label>
-			<select id="daylist" th:field="*{day}" class="form-control">
-				<option th:each="day: ${days}"
-						th:value="${day.id}"
-						th:text="${day.date}"> </option>
+			<label for="tiplist">Trip</label>
+			<select id="triplist" th:field="*{trip}" class="form-control">
+				<option th:each="trip: ${trips}"
+						th:value="${trip.id}"
+						th:text="${trip.name}"> </option>
 			</select>
 			
 			<div style="clear: both; display: block; height: 10px;"></div>

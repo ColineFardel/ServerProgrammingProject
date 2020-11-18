@@ -17,19 +17,25 @@ public class Route {
 	private String city1;
 	private String city2;
 	private String departureTime;
-	//arrival
-	private String arrivingTime;
-	private String date;
+	private String arrivalTime;
 	
+	
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name="dayid")
+	private Day day;
+	
+	/*
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name="tripid")
 	private Trip trip;
+	*/
 	
 	public Route() {
 		
 	}
-	
+	/*
 	public Route(String city1, String city2, String departureTime, String arrivingTime, String date, Trip trip) {
 		super();
 		this.city1 = city1;
@@ -38,6 +44,24 @@ public class Route {
 		this.arrivingTime = arrivingTime;
 		this.date = date;
 		this.trip = trip;
+	}
+	*/
+
+	public Route(String city1, String city2, String departureTime, String arrivalTime, Day day) {
+		super();
+		this.city1 = city1;
+		this.city2 = city2;
+		this.departureTime = departureTime;
+		this.arrivalTime = arrivalTime;
+		this.day = day;
+	}
+
+	public Day getDay() {
+		return day;
+	}
+
+	public void setDay(Day day) {
+		this.day = day;
 	}
 
 	public long getId() {
@@ -72,22 +96,15 @@ public class Route {
 		this.departureTime = departureTime;
 	}
 
-	public String getArrivingTime() {
-		return arrivingTime;
+	public String getArrivalTime() {
+		return arrivalTime;
 	}
 
-	public void setArrivingTime(String arrivingTime) {
-		this.arrivingTime = arrivingTime;
+	public void setArrivalTime(String arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
+	
+	/*
 	public Trip getTrip() {
 		return trip;
 	}
@@ -95,6 +112,7 @@ public class Route {
 	public void setTrip(Trip trip) {
 		this.trip = trip;
 	}
+	*/
 	
 	
 

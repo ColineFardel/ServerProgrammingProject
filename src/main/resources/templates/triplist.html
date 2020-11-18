@@ -7,7 +7,7 @@
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h2>Trip</h2>
+	<h2>Trips</h2>
 	<table class="table table-striped">
 		<tr>
 		    <th>Name</th>
@@ -19,7 +19,7 @@
     		<td th:text="${trip.name}"></td>
     		<td><a th:href="@{/deleteTrip/{id}(id=${trip.id})}" class="btn btn-xs btn-danger">Delete</a></td>
     		<td><a th:href="@{/modifyTrip/{id}(id=${trip.id})}"  class="btn btn-warning">Modify</a></td> 
-    		<td><a th:href="@{/tripdetails/{id}(id=${trip.id})}"  class="btn btn-light">Show</a></td>    
+    		<td><a th:href="@{/tripdetails/{id}(id=${trip.id})}"  class="btn btn-light">Show</a></td>
     	</tr>
      </table>
 	<a href="/addtrip" class="btn btn-success">Add a new Trip</a>

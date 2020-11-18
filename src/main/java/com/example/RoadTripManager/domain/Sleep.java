@@ -15,30 +15,43 @@ public class Sleep {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String city;
-	private String date;
 	private String checkupTime;
 	private double price;
 	private String name;
-	
+
 	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(name="tripid")
-	private Trip trip;
+	@JoinColumn(name = "dayid")
+	private Day day;
+
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JsonIgnore
+	 * 
+	 * @JoinColumn(name="tripid") private Trip trip;
+	 */
 
 	public Sleep() {
 		super();
 	}
 
-	public Sleep(String city, String date, String checkupTime, double price, String name, Trip trip) {
+	/*
+	 * public Sleep(String city, String date, String checkupTime, double price,
+	 * String name, Trip trip) { super(); this.city = city; this.date = date;
+	 * this.checkupTime = checkupTime; this.price = price; this.name = name;
+	 * this.trip = trip; }
+	 */
+
+	public Sleep(String city, String checkupTime, double price, String name, Day day) {
 		super();
 		this.city = city;
-		this.date = date;
 		this.checkupTime = checkupTime;
 		this.price = price;
 		this.name = name;
-		this.trip = trip;
+		this.day = day;
 	}
 
 	public long getId() {
@@ -55,14 +68,6 @@ public class Sleep {
 
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
 	}
 
 	public String getCheckupTime() {
@@ -89,13 +94,18 @@ public class Sleep {
 		this.name = name;
 	}
 
-	public Trip getTrip() {
-		return trip;
+	public Day getDay() {
+		return day;
 	}
 
-	public void setTrip(Trip trip) {
-		this.trip = trip;
+	public void setDay(Day day) {
+		this.day = day;
 	}
-	
-	
+
+	/*
+	 * public Trip getTrip() { return trip; }
+	 * 
+	 * public void setTrip(Trip trip) { this.trip = trip; }
+	 */
+
 }

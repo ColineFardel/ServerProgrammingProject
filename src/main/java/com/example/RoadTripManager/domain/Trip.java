@@ -19,6 +19,11 @@ public class Trip {
 	
 	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="trip")
+	private List<Day> days;
+	
+	/*
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="trip")
 	private List<Route> routes;
 	
 	@JsonIgnore
@@ -28,12 +33,14 @@ public class Trip {
 	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="trip")
 	private List<Sleep> sleeps;
+	*/
 	
 	
 	public Trip(String name) {
 		this.name = name;
 	}
 	
+	/*
 	public Trip(String name, List<Route> routes, List<Place> places, List<Sleep> sleeps) {
 		super();
 		this.name = name;
@@ -41,9 +48,26 @@ public class Trip {
 		this.places = places;
 		this.sleeps = sleeps;
 	}
+	*/
+
+	public Trip(String name, List<Day> days) {
+		super();
+		this.name = name;
+		this.days = days;
+	}
 
 	public Trip() {
 		
+	}
+	
+	
+
+	public List<Day> getDays() {
+		return days;
+	}
+
+	public void setDays(List<Day> days) {
+		this.days = days;
 	}
 
 	public String getName() {
@@ -62,6 +86,7 @@ public class Trip {
 		this.id = id;
 	}
 
+	/*
 	public List<Route> getRoutes() {
 		return routes;
 	}
@@ -85,6 +110,7 @@ public class Trip {
 	public void setSleeps(List<Sleep> sleeps) {
 		this.sleeps = sleeps;
 	}
+	*/
 	
 	
 
