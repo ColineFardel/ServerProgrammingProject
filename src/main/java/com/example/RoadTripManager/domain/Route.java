@@ -2,7 +2,7 @@ package com.example.RoadTripManager.domain;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 /**
  * 
  * @author Coline Fardel
@@ -21,7 +21,7 @@ public class Route {
 	
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonManagedReference
 	@JoinColumn(name="dayid")
 	private Day day;
 	

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 /**
  * 
  * @author Coline Fardel
@@ -17,7 +17,7 @@ public class Trip {
 	private Long id;
 	private String name;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="trip")
 	private List<Day> days;
 	

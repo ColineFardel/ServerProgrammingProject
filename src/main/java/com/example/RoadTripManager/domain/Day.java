@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 
 @Entity
 public class Day {
@@ -15,20 +15,20 @@ public class Day {
 
 	private String date;
 
-	@JsonIgnore
+	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "day")
 	private List<Route> routes;
 
-	@JsonIgnore
+	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "day")
 	private List<Place> places;
 
-	@JsonIgnore
+	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "day")
 	private List<Sleep> sleeps;
 
 	@ManyToOne
-	@JsonIgnore
+	@JsonManagedReference
 	@JoinColumn(name = "tripid")
 	private Trip trip;
 

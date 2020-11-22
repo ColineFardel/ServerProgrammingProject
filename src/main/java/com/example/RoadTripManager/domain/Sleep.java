@@ -2,7 +2,7 @@ package com.example.RoadTripManager.domain;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 
 /**
  * 
@@ -22,7 +22,7 @@ public class Sleep {
 	private String name;
 
 	@ManyToOne
-	@JsonIgnore
+	@JsonManagedReference
 	@JoinColumn(name = "dayid")
 	private Day day;
 
