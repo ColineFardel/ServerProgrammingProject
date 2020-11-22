@@ -17,6 +17,8 @@ import com.example.RoadTripManager.domain.Sleep;
 import com.example.RoadTripManager.domain.SleepRepository;
 import com.example.RoadTripManager.domain.Trip;
 import com.example.RoadTripManager.domain.TripRepository;
+import com.example.RoadTripManager.domain.User;
+import com.example.RoadTripManager.domain.UserRepository;
 
 @SpringBootApplication
 public class RoadTripManagerApplication {
@@ -29,7 +31,7 @@ public class RoadTripManagerApplication {
 
 	@Bean
 	public CommandLineRunner demo(TripRepository triprepository, DayRepository dayrepository,
-			RouteRepository routerepository, PlaceRepository placerepository, SleepRepository sleeprepository) {
+			RouteRepository routerepository, PlaceRepository placerepository, SleepRepository sleeprepository, UserRepository userrepository) {
 		return (args) -> {
 
 			log.info("save some trips");
@@ -50,6 +52,11 @@ public class RoadTripManagerApplication {
 			log.info("save some sleep places");
 			sleeprepository.save(new Sleep("Sion", "18:00", 125, "Hotel",
 					dayrepository.findByDate("05.11.2020").get(0)));
+			
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			userrepository.save(user1);
+			userrepository.save(user2);
 
 			log.info("fetch all trips");
 			for (Trip trip : triprepository.findAll()) {

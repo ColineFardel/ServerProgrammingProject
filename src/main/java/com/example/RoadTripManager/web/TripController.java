@@ -36,6 +36,11 @@ public class TripController {
 	private RouteRepository routerepository;
 	@Autowired
 	private DayRepository dayrepository;
+	
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
 
 	// RESTful service to get all trips
 	@RequestMapping(value = "/trips", method = RequestMethod.GET)
