@@ -2,26 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Triplist</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Triplist</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
 	<h2>Trips</h2>
+	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	<div class="col-md-4" style="padding: 20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+		</form>
+	</div>
 	<table class="table table-striped">
 		<tr>
-		    <th>Name</th>
-		    <th></th>
-		    <th></th>
-		    <th></th>
-		</tr>  
-    	<tr th:each = "trip : ${trips}">
-    		<td th:text="${trip.name}"></td>
-    		<td><a th:href="@{/deleteTrip/{id}(id=${trip.id})}" class="btn btn-xs btn-danger">Delete</a></td>
-    		<td><a th:href="@{/modifyTrip/{id}(id=${trip.id})}"  class="btn btn-warning">Modify</a></td> 
-    		<td><a th:href="@{/tripdetails/{id}(id=${trip.id})}"  class="btn btn-light">Show</a></td>
-    	</tr>
-     </table>
+			<th>Name</th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr th:each="trip : ${trips}">
+			<td th:text="${trip.name}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				th:href="@{/deleteTrip/{id}(id=${trip.id})}"
+				class="btn btn-xs btn-danger">Delete</a></td>
+			<td><a th:href="@{/modifyTrip/{id}(id=${trip.id})}"
+				class="btn btn-warning">Modify</a></td>
+			<td><a th:href="@{/tripdetails/{id}(id=${trip.id})}"
+				class="btn btn-light">Show</a></td>
+		</tr>
+	</table>
 	<a href="/addtrip" class="btn btn-success">Add a new Trip</a>
 </body>
 </html>

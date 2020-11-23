@@ -8,7 +8,7 @@
 	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h2 textContent="${trip.name}" value="${trip.name}"></h2>
+	<h2 th:inline="text">[[${trip.name}]]</h2>
 	<div th:each="day : ${trip.days}">
 		<div th:text="${day.date}"></div>
 		<div th:each="route : ${day.routes}">
