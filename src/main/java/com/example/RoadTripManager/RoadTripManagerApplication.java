@@ -34,6 +34,7 @@ public class RoadTripManagerApplication {
 			RouteRepository routerepository, PlaceRepository placerepository, SleepRepository sleeprepository, UserRepository userrepository) {
 		return (args) -> {
 
+			/*
 			log.info("save some trips");
 			triprepository.save(new Trip("Italie-2021"));
 			triprepository.save(new Trip("France-2023"));
@@ -62,6 +63,7 @@ public class RoadTripManagerApplication {
 			for (Trip trip : triprepository.findAll()) {
 				log.info(trip.toString());
 			}
+			*/
 		};
 
 	}
