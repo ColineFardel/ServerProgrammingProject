@@ -4,18 +4,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.RoadTripManager.domain.Day;
 import com.example.RoadTripManager.domain.Sleep;
 import com.example.RoadTripManager.domain.SleepRepository;
 import com.example.RoadTripManager.domain.Trip;
 
-@RunWith(SpringRunner.class)
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class SleepRepositoryTest {
 	@Autowired
