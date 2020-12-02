@@ -1,30 +1,31 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>TripList</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Add Place</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 
 </head>
 <body>
-	<h1>Add Place</h1>
+	<h1>Add a new place to visit</h1>
 	<div>
-		<form th:object="${place}" th:action="@{savePlace}" action="#" method="post">
-		  	<label for="city">City</label>
-			<input type="text" id="city" th:field="*{city}" />
+		<form th:object="${place}" th:action="@{savePlace}" action="#"
+			method="post">
+			<label for="city">City</label> <input type="text" id="city"
+				th:field="*{city}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<label for="name">Name</label>
-			<input type="text" id="name" th:field="*{name}" />
+
+			<label for="name">Name</label> <input type="text" id="name"
+				th:field="*{name}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<label for="daylist">Trip</label>
-			<select id="daylist" th:field="*{day}" class="form-control">
-				<option th:each="day: ${days}"
-						th:value="${day.id}"
-						th:text="${day.date}"> </option>
+
+			<label for="daylist">Day</label> <select id="daylist"
+				th:field="*{day}" class="form-control">
+				<option th:each="day: ${days}" th:value="${day.id}"
+					th:text="${day.date}"></option>
 			</select>
-			
+
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<input class="btn btn-success" type="submit" value="Save"></input>
 		</form>

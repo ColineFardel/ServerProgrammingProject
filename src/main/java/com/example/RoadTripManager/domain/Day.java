@@ -5,7 +5,11 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.*;
-
+/**
+ * 
+ * @author Coline Fardel
+ *
+ */
 @Entity
 public class Day {
 

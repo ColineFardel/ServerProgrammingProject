@@ -2,6 +2,11 @@ package com.example.RoadTripManager.domain;
 
 import javax.persistence.*;
 
+/**
+ * 
+ * @author Coline Fardel
+ *
+ */
 @Entity
 @Table(name = "usertable")
 public class User {

@@ -23,6 +23,7 @@ import com.example.RoadTripManager.domain.TripRepository;
 /**
  * 
  * @author Coline Fardel
+ * 
  */
 @Controller
 public class TripController {
@@ -37,19 +38,28 @@ public class TripController {
 	private RouteRepository routerepository;
 	@Autowired
 	private DayRepository dayrepository;
-	
-	@RequestMapping(value="/login")
+
+	@RequestMapping(value = "/login")
 	public String login() {
 		return "login";
 	}
-	
-	// RESTful service to get all trips
+
+	/**
+	 * RESTful service to get all the trips
+	 * 
+	 * @return the list of trips
+	 */
 	@RequestMapping(value = "/trips", method = RequestMethod.GET)
 	public @ResponseBody List<Trip> tripListRest() {
 		return (List<Trip>) triprepository.findAll();
 	}
 
-	// RESTful service to get trip by id
+	/**
+	 * RESTful service to get a trip by id
+	 * 
+	 * @param tripId
+	 * @return the trip
+	 */
 	@RequestMapping(value = "/trip/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Trip> findTripRest(@PathVariable("id") Long tripId) {
 		return triprepository.findById(tripId);
@@ -58,6 +68,7 @@ public class TripController {
 	/**
 	 * Method to show the list of trips
 	 * 
+	 * @param model
 	 * @return the list of trips
 	 */
 	@RequestMapping("/triplist")
@@ -275,6 +286,13 @@ public class TripController {
 		return "tripdetails";
 	}
 
+	/**
+	 * Method to modify a day
+	 * 
+	 * @param dayId
+	 * @param model
+	 * @return the html page to modify a day
+	 */
 	@RequestMapping(value = "/modifyDay/{id}", method = RequestMethod.GET)
 	public String modifyDay(@PathVariable("id") Long dayId, Model model) {
 		Optional<Day> day = dayrepository.findById(dayId);
@@ -283,6 +301,13 @@ public class TripController {
 		return "modifyday";
 	}
 
+	/**
+	 * Method to modify a route
+	 * 
+	 * @param routeId
+	 * @param model
+	 * @return the html page to modify a route
+	 */
 	@RequestMapping(value = "/modifyRoute/{id}", method = RequestMethod.GET)
 	public String modifyRoute(@PathVariable("id") Long routeId, Model model) {
 		Optional<Route> route = routerepository.findById(routeId);
@@ -291,6 +316,13 @@ public class TripController {
 		return "modifyroute";
 	}
 
+	/**
+	 * Method to modify a sleep
+	 * 
+	 * @param sleepId
+	 * @param model
+	 * @return the html page to modify a sleep
+	 */
 	@RequestMapping(value = "/modifySleep/{id}", method = RequestMethod.GET)
 	public String modifySleep(@PathVariable("id") Long sleepId, Model model) {
 		Optional<Sleep> sleep = sleeprepository.findById(sleepId);
@@ -299,6 +331,13 @@ public class TripController {
 		return "modifysleep";
 	}
 
+	/**
+	 * Method to modify a place
+	 * 
+	 * @param placeId
+	 * @param model
+	 * @return the html page to modify a place
+	 */
 	@RequestMapping(value = "/modifyPlace/{id}", method = RequestMethod.GET)
 	public String modifyPlace(@PathVariable("id") Long placeId, Model model) {
 		Optional<Place> place = placerepository.findById(placeId);
