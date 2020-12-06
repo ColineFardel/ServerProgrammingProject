@@ -21,6 +21,7 @@ import com.example.RoadTripManager.domain.Trip;
 import com.example.RoadTripManager.domain.TripRepository;
 
 /**
+ * Controller for the road trip manager
  * 
  * @author Coline Fardel
  * 
@@ -78,7 +79,7 @@ public class TripController {
 	}
 
 	/**
-	 * Method to add a new trip to the database
+	 * Method to add a new trip
 	 * 
 	 * @param model
 	 * @return the page to add a trip
@@ -90,7 +91,7 @@ public class TripController {
 	}
 
 	/**
-	 * Method to add a new day to the database
+	 * Method to add a new day
 	 * 
 	 * @param model
 	 * @return the page to add a day
@@ -103,7 +104,7 @@ public class TripController {
 	}
 
 	/**
-	 * Method to add a new route to the database
+	 * Method to add a new route
 	 * 
 	 * @param model
 	 * @return the page to add a route
@@ -116,7 +117,7 @@ public class TripController {
 	}
 
 	/**
-	 * Method to add a new place to the database
+	 * Method to add a new place
 	 * 
 	 * @param model
 	 * @return the page to add a place
@@ -129,7 +130,7 @@ public class TripController {
 	}
 
 	/**
-	 * Method to add a new sleep to the database
+	 * Method to add a new sleep
 	 * 
 	 * @param model
 	 * @return the page to add a sleep
@@ -156,7 +157,7 @@ public class TripController {
 	/**
 	 * Method to save a day in the database
 	 * 
-	 * @param trip
+	 * @param day
 	 * @return the list of trips
 	 */
 	@RequestMapping(value = "/saveDay", method = RequestMethod.POST)
@@ -168,7 +169,7 @@ public class TripController {
 	/**
 	 * Method to save a route in the database
 	 * 
-	 * @param trip
+	 * @param route
 	 * @return the list of trips
 	 */
 	@RequestMapping(value = "/saveRoute", method = RequestMethod.POST)
@@ -180,7 +181,7 @@ public class TripController {
 	/**
 	 * Method to save a place in the database
 	 * 
-	 * @param trip
+	 * @param place
 	 * @return the list of trips
 	 */
 	@RequestMapping(value = "/savePlace", method = RequestMethod.POST)
@@ -192,7 +193,7 @@ public class TripController {
 	/**
 	 * Method to save a sleep in the database
 	 * 
-	 * @param trip
+	 * @param sleep
 	 * @return the list of trips
 	 */
 	@RequestMapping(value = "/saveSleep", method = RequestMethod.POST)
@@ -277,6 +278,8 @@ public class TripController {
 	/**
 	 * Method to show the details of one trip
 	 * 
+	 * @param tripId
+	 * @param model
 	 * @return the html page for the details of the trip
 	 */
 	@RequestMapping(value = "/tripdetails/{id}", method = RequestMethod.GET)

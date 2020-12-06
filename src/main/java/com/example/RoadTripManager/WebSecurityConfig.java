@@ -11,32 +11,28 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.RoadTripManager.web.UserDetailServiceImpl;
 
-
+/**
+ * Security configurations for login
+ * 
+ * @author Coline Fardel
+ *
+ */
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled= true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-    private UserDetailServiceImpl userDetailsService;	
-	
+	private UserDetailServiceImpl userDetailsService;
+
 	@Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/triplist")
-                .permitAll()
-                .and()
-            .logout()
-                .permitAll();
-    }
-    
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
+				.defaultSuccessUrl("/triplist").permitAll().and().logout().permitAll();
+	}
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+	}
 }

@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.*;
+
 /**
+ * Day entity
  * 
  * @author Coline Fardel
  *

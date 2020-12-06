@@ -3,50 +3,33 @@ package com.example.RoadTripManager.domain;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.*;
+
 /**
+ * Route entity
  * 
  * @author Coline Fardel
  * 
  */
 @Entity
 public class Route {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String city1;
 	private String city2;
 	private String departureTime;
 	private String arrivalTime;
-	
-	
+
 	@ManyToOne
 	@JsonManagedReference
-	@JoinColumn(name="dayid")
+	@JoinColumn(name = "dayid")
 	private Day day;
-	
-	/*
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name="tripid")
-	private Trip trip;
-	*/
-	
+
 	public Route() {
-		
+
 	}
-	/*
-	public Route(String city1, String city2, String departureTime, String arrivingTime, String date, Trip trip) {
-		super();
-		this.city1 = city1;
-		this.city2 = city2;
-		this.departureTime = departureTime;
-		this.arrivingTime = arrivingTime;
-		this.date = date;
-		this.trip = trip;
-	}
-	*/
 
 	public Route(String city1, String city2, String departureTime, String arrivalTime, Day day) {
 		super();
@@ -104,17 +87,5 @@ public class Route {
 	public void setArrivalTime(String arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-	
-	/*
-	public Trip getTrip() {
-		return trip;
-	}
-
-	public void setTrip(Trip trip) {
-		this.trip = trip;
-	}
-	*/
-	
-	
 
 }

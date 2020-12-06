@@ -5,6 +5,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.*;
 
 /**
+ * Sleep entity
  * 
  * @author Coline Fardel
  *
@@ -26,24 +27,9 @@ public class Sleep {
 	@JoinColumn(name = "dayid")
 	private Day day;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JsonIgnore
-	 * 
-	 * @JoinColumn(name="tripid") private Trip trip;
-	 */
-
 	public Sleep() {
 		super();
 	}
-
-	/*
-	 * public Sleep(String city, String date, String checkupTime, double price,
-	 * String name, Trip trip) { super(); this.city = city; this.date = date;
-	 * this.checkupTime = checkupTime; this.price = price; this.name = name;
-	 * this.trip = trip; }
-	 */
 
 	public Sleep(String city, String checkupTime, double price, String name, Day day) {
 		super();
@@ -101,11 +87,5 @@ public class Sleep {
 	public void setDay(Day day) {
 		this.day = day;
 	}
-
-	/*
-	 * public Trip getTrip() { return trip; }
-	 * 
-	 * public void setTrip(Trip trip) { this.trip = trip; }
-	 */
 
 }
